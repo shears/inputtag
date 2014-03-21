@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>input-tag</title>
+    <link rel="stylesheet" href="css/base.css"/>
+    <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" href="libs/input-tag/input-tag.css"/>
+    <link rel="stylesheet" href="css/index.css"/>
+</head>
+<body>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">InputTag</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav toggle-active-ul">
+                <li class="active"><a href="#introduce">Introduce</a></li>
+                <li><a href="#document">Document</a></li>
+                <li><a href="#practice">Practice</a></li>
+                <li><a href="#special">Special</a></li>
+            </ul>
+            <form id="google" class="navbar-form navbar-right" role="search">
+                <div class="form-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default">Google</button>
+            </form>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<div class="container">
+    <div class="row">
+        <h1 id="inputTag">InputTag <small>--Input tags in an input box.</small></h1>
+        <div class="pr h100 w mt20 mb20">
+               <img  id="fly-img" class="pa" src="images/u=1973980325,3874288985&fm=120.jpeg">
+        </div>
+        <h2 id="introduce">Introduce</h2>
+        <p>It is an jQuery plugin.you can put some tags in an box like input field.you can assign some separative signs to recognize tag.</p>
+        <h2 id="document">Document</h2>
+        <label>Default initialization:</label>
+        <pre>
+            <code>
+                $(".input-tag").inputTag();
+            </code>
+        </pre>
+        <label>Advanced initialization:</label>
+        <pre>
+            <code>
+                $(".input-tag").inputTag({
+                    separativeSigns: [",", "，", ";", "；",".","。"],
+                    multi: true,
+                    readonly: false
+                });
+            </code>
+        </pre>
+        <h2 id="practice">Practice</h2>
+            <form>
+                <div class="form-group">
+                    <label for="fixed-inputTag">fixed length</label>
+                    <div>
+                        <div id="fixed-inputTag" class="input-tag default-border bw1 solid w300">
+                            <input class="input">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fixed-inputTag">varriable length</label>
+                    <div>
+                        <div id="fixed-inputTag" class="input-tag default-border bw1 solid">
+                            <input class="input">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        <h2 id="special">Special</h2>
+        <p>
+            Thanks for my friends <strong>Luo chuan</strong> and <strong>Li hong he</strong>, and my company <strong>video works</strong>.
+        </p>
+    </div>
+</div>
+<script type="text/javascript" src="libs/jquery/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="libs/jquery/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="libs/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="libs/input-tag/input-tag.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>

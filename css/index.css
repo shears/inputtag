@@ -1,0 +1,19 @@
+/** 1.0.0 index css
+*   =======================================================================
+*   index.css
+*   =======================================================================
+*   last modified by aqr. 2014/3/20
+*/
+#fly-img{
+    height: 100%;
+    border-bottom:2px solid gray;
+    -webkit-transform:rotate(15deg); /* Chrome, Safari, Opera */
+    transform:rotate(15deg);
+    -webkit-transition:width 3s, height 3s, -webkit-transform 3s; /* For Safari 3.1 to 6.0 */
+    transition:height 3s, transform 3s;
+}
+#fly-img:hover{
+    height: 200%;
+    -webkit-transform:rotate(320deg); /* Chrome, Safari, Opera */
+    transform:rotate(320deg);
+}
