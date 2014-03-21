@@ -7,13 +7,25 @@
 #fly-img{
     height: 100%;
     border-bottom:2px solid gray;
+    box-shadow: 0px 0px 0px gray;			
     -webkit-transform:rotate(15deg); /* Chrome, Safari, Opera */
     transform:rotate(15deg);
-    -webkit-transition:width 3s, height 3s, -webkit-transform 3s; /* For Safari 3.1 to 6.0 */
-    transition:height 3s, transform 3s;
+    -webkit-transition:-webkit-box-shadow 3s, height 3s, -webkit-transform 3s; /* For Safari 3.1 to 6.0 */
+    transition:box-shadow 3s, height 3s, transform 3s;
 }
 #fly-img:hover{
     height: 200%;
+    -webkit-box-shadow: -50px -50px 10px gray;
+    box-shadow: -50px -30px 10px gray;
     -webkit-transform:rotate(320deg); /* Chrome, Safari, Opera */
     transform:rotate(320deg);
+}
+
+#g-search-input{
+	width: 100px;
+	-webkit-transition: width 1s;
+	transition: width 1s;
+}
+#g-search-input:focus{
+	width: 300px;
 }
