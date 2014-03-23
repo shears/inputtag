@@ -1,5 +1,7 @@
 /**
-*	v1.0.0
+*	v1.0.1 
+*	restore the back webpage hug when keydown the back key.
+*	in this version never add tag when keydown the space key.		
 * 	======================================================================
 *	input some contents that will represent like tag.
 * 	======================================================================
@@ -62,6 +64,7 @@
 			 * trigger events or call functinons when tag keydown.
 			 */
 			$(this).on("keydown", ".tag", function (event) {
+				event.preventDefault();
 				var code = event.keyCode;
 				if (code === 8) {//back space
 					if ($(this).prev()[0]) {
@@ -74,6 +77,7 @@
 						}
 					}
 					deleteTag(this);
+					event.keyCode = 0;
 				} else if (code === 46) {//Delete
 					if ($(this).next()[0]) {
 						$(this).next()[0].focus();
@@ -153,7 +157,7 @@
 			if (sign.length > 0) {
 				sign = sign.substring(0, 1);
 			}
-			if (($.inArray(settings.separativeSigns, sign) > -1) || sign === " " || sign === " ") {
+			if (`$.inArray(sign, settings.separativeSigns) > -1) {
 				addTag(obj, oldValue);
 				$(obj).val("");
 			}
