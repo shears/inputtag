@@ -157,7 +157,7 @@
 			if (sign.length > 0) {
 				sign = sign.substring(0, 1);
 			}
-			if (`$.inArray(sign, settings.separativeSigns) > -1) {
+			if ($.inArray(sign, settings.separativeSigns) > -1) {
 				addTag(obj, oldValue);
 				$(obj).val("");
 			}
