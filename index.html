@@ -44,47 +44,76 @@
     <div class="row">
         <h1 id="inputTag">InputTag <small>--Input tags in an input box.</small></h1>
         <div class="pr h100 w mt20 mb20">
-               <img  id="fly-img" class="pa" src="images/u=1973980325,3874288985&fm=120.jpeg">
+               	<img  id="fly-img" class="pa img-circle img-rounded" src="images/u=1973980325,3874288985&fm=120.jpeg">
+		<a class="btn btn-info pull-right" href="https://github.com/shears/shears.github.io/archive/master.zip">Download v1.1.0</a>
         </div>
         <h2 id="introduce">Introduce</h2>
-        <p>It is an jQuery plugin.you can put some tags in an box like input field.you can assign some separative signs to recognize tag.</p>
+        <p>It is an jQuery plugin.you can put some tags in a box looks alike input field.you can assign some separative signs to recognize tag.</p>
         <h2 id="document">Document</h2>
-        <label>Default initialization:</label>
+	<div class="alert alert-warning alert-dismissable">
+		 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+ 		 <strong>Warning!</strong> If you want to add tag, please press the <em>Enter</em> key in default initialize.
+	</div>
+	<label>Default initialization:</label>
         <pre>
             <code>
                 $(".input-tag").inputTag();
             </code>
         </pre>
+        <form>
+            <div class="form-group">
+                    <label for="fixed-inputTag">fixed length</label>
+                    <div>
+                        <div class="input-tag default-border bw1 solid w300 default-input-tag">
+                            <input class="input">
+                        </div>
+                    </div>
+            </div>
+            <div class="form-group">
+                    <label for="fixed-inputTag">varriable length</label>
+                    <div>
+                        <div class="input-tag default-border bw1 solid default-input-tag">
+                            <input class="input">
+                        </div>
+             	    </div>
+             </div>
+        </form>
         <label>Advanced initialization:</label>
         <pre>
             <code>
                 $(".input-tag").inputTag({
-                    separativeSigns: [",", "，", ";", "；",".","。"],
-                    multi: true,
-                    readonly: false
+                    	separativeSigns: [",", "，", ";", "；",".","。"],
+                    	multi: true,
+                    	readonly: false,
+			repeatable: false
                 });
             </code>
         </pre>
+        <form>
+            <div class="form-group">
+                <label>fixed length</label>
+                <div>
+                    <div class="input-tag default-border bw1 solid w300 advanced-input-tag">
+                        <input class="input">
+                    </div>
+            	</div>
+            </div>
+            <div class="form-group">
+                <label>varriable length</label>
+                <div>
+                     <div class="input-tag default-border bw1 solid advanced-input-tag">
+                         <input class="input">
+                     </div>
+                </div>
+            </div>
+         </form>
         <h2 id="practice">Practice</h2>
-            <form>
-                <div class="form-group">
-                    <label for="fixed-inputTag">fixed length</label>
-                    <div>
-                        <div id="fixed-inputTag" class="input-tag default-border bw1 solid w300">
-                            <input class="input">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="fixed-inputTag">varriable length</label>
-                    <div>
-                        <div id="fixed-inputTag" class="input-tag default-border bw1 solid">
-                            <input class="input">
-                        </div>
-                    </div>
-                </div>
-            </form>
-        <h2 id="special">Special</h2>
+       	<div class="alert alert-warning alert-dismissable">
+ 		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+ 		<strong>Warning!</strong> If you wanna pracice court, please wait next version published. so sorry!
+        <p >Warning! </p>
+	</div>
+	<h2 id="special">Special</h2>
         <p>
             Thanks for my friends <strong>Luo chuan</strong> and <strong>Li hong he</strong>, and my company <strong>video works</strong>.
         </p>

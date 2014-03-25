@@ -6,8 +6,9 @@
 */
 #fly-img{
     height: 100%;
-    border-bottom:2px solid gray;
-    box-shadow: 0px 0px 0px gray;			
+    padding: 1px;
+    border:2px solid gray;
+    box-shadow: 0px 0px 0px gray;
     -webkit-transform:rotate(15deg); /* Chrome, Safari, Opera */
     transform:rotate(15deg);
     -webkit-transition:-webkit-box-shadow 3s, height 3s, -webkit-transform 3s; /* For Safari 3.1 to 6.0 */
@@ -16,7 +17,7 @@
 #fly-img:hover{
     height: 200%;
     -webkit-box-shadow: -50px -50px 10px gray;
-    box-shadow: -50px -30px 10px gray;
+    box-shadow: -50px -30px 10px rgba(0, 0, 0, .6);
     -webkit-transform:rotate(320deg); /* Chrome, Safari, Opera */
     transform:rotate(320deg);
 }

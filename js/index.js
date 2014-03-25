@@ -22,7 +22,13 @@
     /* define all functions in initComponents.
     ============================================================================== */
     function initInputTag(){
-           $(".input-tag").inputTag();
+        $(".default-input-tag.input-tag").inputTag();
+	$(".advanced-input-tag.input-tag").inputTag({
+        	separativeSigns: [",", "，", ";", "；",".","。"],
+                multi: true,
+                readonly: false,
+		repeatable: false
+	});
     }
 
     /* define all functions in addEventListener.

@@ -33,10 +33,11 @@
 .input-tag .tag{
 	background-color: #08c;
 	border:2px solid #08c;
-    border-radius: 4px;
+  	border-radius: 4px;
 	color:white;
 	margin:2px;
 	padding:0px 4px;
+	text-decoration: none;
 }
 .input-tag .tag:focus{
 	border-color: rgb(241, 208, 167);
