@@ -1,7 +1,6 @@
 /**
-*	v1.0.1 
-*	restore the back webpage hug when keydown the back key.
-*	in this version never add tag when keydown the space key.		
+*	v1.1.0 
+*	in this version add function that tags are unrepeatable .		
 * 	======================================================================
 *	input some contents that will represent like tag.
 * 	======================================================================
