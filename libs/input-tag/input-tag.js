@@ -34,7 +34,6 @@
 			//trigger function when tagInput key down.
 			$(this).children(".input").keydown(function (event) {
 				var code = event.keyCode;
-				console.log(code);
 				if (code === 8) {//back space
 					if (this.selectionStart === 0) {
 						var lastTag = $(this).parent().children(".tag:last");
@@ -163,10 +162,11 @@
 			}
 			if ($.inArray(sign, settings.separativeSigns) > -1) {
 				if(!settings.repeatable && isRepeat($(obj).parent(), oldValue)){
-                                	return;
+                                	$(obj).attr("placeholder","unrepeatable").val("");
+					return;
       		                } 
 				addTag(obj, oldValue);
-				$(obj).val("");
+				$(obj).attr("placeholder","").val("");
 			}
 		}
 	};
