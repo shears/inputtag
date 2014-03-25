@@ -6,40 +6,36 @@
 *	input some contents that will represent like tag.
 * 	======================================================================
 *	2014/3/19 mgwaqir@gmail.com
-*   last modified by aqr
+*       last modified by aqr
 */
 (function ($) {
 	$.fn.inputTag = function (options) {
 
 		var defaults = {
-			separativeSigns: [",", "，", ";", "；"], //default separative signs.
+			separativeSigns: [], //default separative signs.
 			multi: true,    //if true it can input multi tags, else it can input only one.
-			readonly: false
+			readonly: false,
+			repeatable: true
 		};
 
 		var settings = $.extend(defaults, options || {});
-
-
-		/**
-		 * trigger function when tag or input focused
-		 */
+		
+		// trigger function when tag or input focused
 		if (!settings.readonly) {
 			$(this).on("focus", ".tag,.input", function () {
 				$(this).parent().addClass("input-tag-focus");
 			});
 
-			/**
-			 * trigger function when tag or input blur
-			 */
+			
+			// trigger function when tag or input blur
 			$(this).on("blur", ".tag,.input", function () {
 				$(this).parent().removeClass("input-tag-focus");
 			});
 
-			/**
-			 * trigger function when tagInput key down.
-			 */
+			//trigger function when tagInput key down.
 			$(this).children(".input").keydown(function (event) {
 				var code = event.keyCode;
+				console.log(code);
 				if (code === 8) {//back space
 					if (this.selectionStart === 0) {
 						var lastTag = $(this).parent().children(".tag:last");
@@ -49,7 +45,10 @@
 					if (this.selectionStart === 0 && $(this).parent().children(".tag:last").size() > 0) {
 						$(this).parent().children(".tag:last")[0].focus();
 					}
-				} else if (code === 13) {//next
+				} else if (code === 13) {//enter
+					if(!settings.repeatable && isRepeat($(this).parent(), $(this).val())){
+						return;	
+					}
 					addTag(this, $(this).val());
 					$(this).val("");
 				} else {
@@ -60,9 +59,7 @@
 				}
 			});
 
-			/**
-			 * trigger events or call functinons when tag keydown.
-			 */
+			//trigger events or call functinons when tag keydown.
 			$(this).on("keydown", ".tag", function (event) {
 				event.preventDefault();
 				var code = event.keyCode;
@@ -77,7 +74,6 @@
 						}
 					}
 					deleteTag(this);
-					event.keyCode = 0;
 				} else if (code === 46) {//Delete
 					if ($(this).next()[0]) {
 						$(this).next()[0].focus();
@@ -89,7 +85,7 @@
 					if ($(this).prev()[0]) {
 						$(this).prev()[0].focus();
 					}
-				} else if (code === 39) {//next
+				} else if (code === 39 || code === 9) {//next or tab
 					if (this === $(this).parent().children(".tag:last")[0]) {
 						$(this).parent().children(".input")[0].focus();
 					} else {
@@ -101,9 +97,7 @@
 			$(this).children(".input").hide();
 		}
 
-		/**
-		 * set tags if input has text.
-		 */
+		//set tags if input has text.
 		this.each(function () {
 			var val = $.trim($(this).children(".input").val());
 			if (val !== "") {
@@ -120,56 +114,68 @@
 					}
 				}
 				for (var i in arr) {
+					if(!settings.repeatable && isRepeat($(this), arr[i])){
+                                                 continue;
+                                        } 
 					addTag($(this).children(".input"), arr[i]);
 				}
 				$(this).children(".input").val("");
 			}
 
 		});
-		/**
-		 * delete tag
-		 * @param tag
-		 */
+		
+		//delete tag
+		//param tag
 		function deleteTag(tag) {
 			tag.remove();
 		}
 
-		/**
-		 * add tag
-		 * @param obj : the object of tagInput
-		 * @param text : text of new tag created
-		 */
+		
+		//add tag
+		//param obj : the object of tagInput
+		//param text : text of new tag created
 		function addTag(obj, text) {
 			if (text && $.trim(text) !== "") {
 				if (settings.multi || (!settings.multi && $(obj).parent().children(".tag").size() === 0)) {
-					$("<span class='tag' tabindex='0'>" + text + "</span>").insertBefore($(obj).parent().children(".input"));
+					$("<span class='tag' tabindex=0>" + text + "</span>").insertBefore($(obj).parent().children(".input"));
 				}
 			}
 		}
-
-		/**
-		 * trigger event when tagInput keyboard
-		 * @param obj : the object of tagInput
-		 * @param oldValue : the value before keydown
-		 */
+		
+		//judge if the text is in tags array has added.
+		//param obj : the element of input-tag.
+		//param text : text of tag will be added.
+		function isRepeat(obj, text){
+			var arr = $(obj).getTagsArray();
+			if($.inArray(text, arr) > -1){
+				return true;
+			}else{
+				return false;
+			} 	
+		}
+		
+		//trigger event when tagInput keyboard
+		//param obj : the object of tagInput
+		//param oldValue : the value before keydown
 		function inputTagKeyup(obj, oldValue) {
 			var sign = $(obj).val().replace(oldValue, "");
 			if (sign.length > 0) {
 				sign = sign.substring(0, 1);
 			}
-			if (`$.inArray(sign, settings.separativeSigns) > -1) {
+			if ($.inArray(sign, settings.separativeSigns) > -1) {
+				if(!settings.repeatable && isRepeat($(obj).parent(), oldValue)){
+                                	return;
+      		                } 
 				addTag(obj, oldValue);
 				$(obj).val("");
 			}
 		}
 	};
 
-	/**
-	 * get array of tags.
-	 * if one and just one tagInput ,the function return single dimensional array
-	 * else return double dimensional array, first index as index of inputTag, second index as tag index of inputTag.
-	 * @returns {Array}
-	 */
+	//get array of tags.
+	//if one and just one tagInput ,the function return single dimensional array
+	//else return double dimensional array, first index as index of inputTag, second index as tag index of inputTag.
+	//return Array
 	$.fn.getTagsArray = function () {
 		var rtArr = [];
 		if (this.size() === 1) {
@@ -192,10 +198,8 @@
 		return rtArr;
 	}
 
-	/**
-	 * set the Tags
-	 * @param arr
-	 */
+	//set the Tags
+	//param arr
 	$.fn.addTags = function (arr) {
 		if (this.hasClass("aqr-input")) {
 			if (arr && $.isArray(arr)) {
@@ -206,10 +210,8 @@
 		}
 	}
 
-	/**
-	 *
-	 */
-	$.fn.resetTagInput = function () {
+	//reset tags. 
+	$.fn.resetInputTag = function () {
 		if (this.hasClass("aqr-input")) {
 			this.children(".tag").remove();
 			this.children(".input").val("");
